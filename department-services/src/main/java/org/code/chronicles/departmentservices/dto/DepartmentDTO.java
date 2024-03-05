@@ -2,9 +2,10 @@ package org.code.chronicles.departmentservices.dto;
 
 import lombok.*;
 
+
 @Data
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class DepartmentDTO {
@@ -12,6 +13,4 @@ public class DepartmentDTO {
     private String deptName;
     private String deptDescription;
     private String deptCode;
-
-
 }
