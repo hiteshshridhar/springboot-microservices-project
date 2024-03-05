@@ -16,14 +16,13 @@ public class DepartmentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Long id;
 
-    @Column
+    @Column(name = "dept_name")
     private String deptName;
-    @Column
+    @Column(name = "dept_description")
     private String deptDescription;
-    @Column
+    @Column(name = "dept_code")
     private String deptCode;
 
     @Override
