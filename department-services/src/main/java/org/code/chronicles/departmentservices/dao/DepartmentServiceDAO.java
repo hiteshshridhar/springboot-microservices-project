@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DepartmentServiceDAO {
     List<DepartmentDTO> getAllDepartment();
-     DepartmentDTO getDepartmentId(int id);
+     DepartmentDTO findByDeptCode(String deptCode);
      DepartmentDTO saveDepartment(DepartmentDTO departmentDTO);
      void deleteDepartment(Long id);
 }

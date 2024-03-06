@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/departments")
-
 public class DepartmentController {
 
     private final DepartmentServiceDAO  departmentServiceDAO;
@@ -27,9 +26,10 @@ public class DepartmentController {
         return new ResponseEntity<>(allDepartment,HttpStatus.OK) ;
     }
 
-    @GetMapping("{id}")
-    public DepartmentDTO getDepartmentById(@PathVariable("id") int deptId) {
-        return null;
+    @GetMapping("{dept-code}")
+    public ResponseEntity<DepartmentDTO> getDepartmentByCode(@PathVariable("dept-code") String deptCode) {
+        DepartmentDTO dto = departmentServiceDAO.findByDeptCode(deptCode);
+        return new ResponseEntity<>(dto,HttpStatus.OK);
     }
 
     @PostMapping()

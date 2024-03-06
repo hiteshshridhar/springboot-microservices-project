@@ -1,6 +1,5 @@
 package org.code.chronicles.departmentservices.service;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.code.chronicles.departmentservices.dao.DepartmentServiceDAO;
 import org.code.chronicles.departmentservices.dto.DepartmentDTO;
@@ -13,12 +12,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 @NoArgsConstructor
 public class DepartmentServiceDAOImpl implements DepartmentServiceDAO {
 
-    @Autowired
     private DepartmentRepository departmentRepository;
+
+    @Autowired
+    public DepartmentServiceDAOImpl(DepartmentRepository departmentRepository) {
+        this.departmentRepository = departmentRepository;
+    }
 
     @Override
     public List<DepartmentDTO> getAllDepartment() {
@@ -27,9 +29,17 @@ public class DepartmentServiceDAOImpl implements DepartmentServiceDAO {
     }
 
     @Override
-    public DepartmentDTO getDepartmentId(int id) {
-        return null;
+    public DepartmentDTO findByDeptCode(String deptCode) {
+        DepartmentEntity entity = departmentRepository.findByDeptCode(deptCode);
+        System.out.println("Entity value came out to be: "+entity);
+        return new DepartmentDTO(
+                entity.getId(),
+                entity.getDeptName(),
+                entity.getDeptDescription(),
+                entity.getDeptCode()
+        );
     }
+
 
     @Override
     public DepartmentDTO saveDepartment(DepartmentDTO departmentDTO) {
